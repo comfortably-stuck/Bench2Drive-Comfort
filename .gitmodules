@@ -1,0 +1,4 @@
+[submodule "Bench2Drive"]
+	path = Bench2Drive
+	url = https://github.com/Thinklab-SJTU/Bench2Drive.git
+	branch = 0.0.3
