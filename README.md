@@ -4,7 +4,10 @@ Comfort and standstill metrics for closed-loop [Bench2Drive](https://github.com/
 evaluation, as described in:
 
 > **Comfortably Stuck: Evaluation Pitfalls in Bench2Drive's Closed-Loop Protocol**
-> arXiv: _TBD (link will be added on release)_
+> [arXiv:2610.21741](https://arxiv.org/abs/2610.21741)
+
+The [project page source](https://github.com/comfortably-stuck/comfortably-stuck.github.io)
+contains an overview of the findings and results.
 
 Bench2Drive's official comfort metric has several implementation issues (a
 sampling-rate mismatch, an undersized smoothing window, invalid yaw
@@ -24,7 +27,8 @@ stationary segments. This repository provides:
 - **Standstill benchmark** — how much of a route the ego spends stationary,
   which the traditional comfort metric conflates with actual comfort.
 
-See the paper for the full derivation and discussion.
+See the [paper](https://arxiv.org/abs/2610.21741) for the full derivation and
+discussion.
 
 ## Repository layout
 
@@ -142,11 +146,14 @@ license, in particular its non-commercial and no-derivatives terms. Please
 cite both this work and Bench2Drive if you use this repository:
 
 ```bibtex
-@misc{comfortably-stuck,
+@misc{aghajanzadeh2026comfortably,
   title  = {Comfortably Stuck: Evaluation Pitfalls in Bench2Drive's Closed-Loop Protocol},
-  author = {TBD},
+  author = {Aghajanzadeh, Emad and Schwarzfischer, Thomas and Thoma, Moritz and
+            Fasfous, Nael and Vemparala, Manoj Rohit and Mori, Pierpaolo and
+            Mueller-Gritschneder, Daniel and Schlichtmann, Ulf},
   year   = {2026},
-  note   = {arXiv preprint, link TBD}
+  eprint = {2610.21741},
+  archivePrefix = {arXiv}
 }
 
 @inproceedings{jia2024bench2drive,
