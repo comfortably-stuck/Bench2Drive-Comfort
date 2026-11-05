@@ -175,8 +175,13 @@ file; `traditional_comfort()` in `comfort_metrics/comfort.py` calls into the
 selected Bench2Drive checkout's own, unmodified code at runtime rather than
 reimplementing it.
 Use of Bench2Drive itself (via the submodule) remains subject to its own
-license, in particular its non-commercial and no-derivatives terms. Please
-cite both this work and Bench2Drive if you use this repository:
+license, in particular its non-commercial and no-derivatives terms. 
+
+This research project is not affiliated with, endorsed by, or officially associated with the Bench2Drive authors or developers.
+
+## Citation
+
+Please cite both this work and Bench2Drive if you use this repository:
 
 ```bibtex
 @misc{aghajanzadeh2026comfortably,
@@ -188,7 +193,9 @@ cite both this work and Bench2Drive if you use this repository:
   eprint = {2610.21741},
   archivePrefix = {arXiv}
 }
+```
 
+```bibtex
 @inproceedings{jia2024bench2drive,
   title     = {Bench2Drive: Towards Multi-Ability Benchmarking of Closed-Loop End-To-End Autonomous Driving},
   author    = {Jia, Xiaosong and Yang, Zhenjie and Li, Qifeng and Zhang, Zhiyuan and Yan, Junchi},
