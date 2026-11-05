@@ -124,7 +124,7 @@ def write_csv(rows, path):
 def main():
     parser = argparse.ArgumentParser(description=__doc__,
                                      formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("run_dir", help="Eval run directory (per-route folders + results_rank*.json).")
+    parser.add_argument("run_dir", help="Eval run directory (Bench2Drive results JSON + per-route folders).")
     parser.add_argument("-m", "--metric-dir", default=None,
                         help="Folder holding the per-route metric_info.json dirs (default: run_dir).")
     parser.add_argument("-o", "--output", default=None,

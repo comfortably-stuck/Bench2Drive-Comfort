@@ -1,8 +1,9 @@
 """Loading Bench2Drive leaderboard evaluation output.
 
-An eval run directory holds one ``results_rank*.json`` (or equivalent) per
-worker with the leaderboard's per-route records, and one sub-folder per
-route holding that route's ``metric_info.json`` (the per-frame kinematic
+An evaluation run directory holds the leaderboard's results JSON file
+(``results.json`` in Bench2Drive's run script or
+``simulation_results.json`` by default in its evaluator), and one sub-folder
+per route holding that route's ``metric_info.json`` (the per-frame kinematic
 log the comfort and standstill metrics are computed from).
 """
 
@@ -17,13 +18,13 @@ METRIC_KEYS = ("acceleration", "angular_velocity", "forward_vector",
                "right_vector", "location", "rotation")
 COMPLETED_STATUSES = ("Completed", "Perfect")
 
-# Per-rank result file names vary by evaluation harness.
-_RESULT_PATTERNS = ("results_rank*.json", "simulation_results_rank*.json",
-                    "checkpoint_endpoint_rank*.json")
+# Bench2Drive's run script writes results.json; the evaluator's fallback
+# filename is simulation_results.json.
+_RESULT_PATTERNS = ("results.json", "simulation_results.json")
 
 
 def load_records(run_dir):
-    """All route records from a run's per-rank leaderboard result files."""
+    """All route records from a run's leaderboard result files."""
     paths = []
     for pattern in _RESULT_PATTERNS:
         paths.extend(glob.glob(os.path.join(run_dir, pattern)))

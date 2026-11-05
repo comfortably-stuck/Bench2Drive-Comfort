@@ -79,8 +79,10 @@ pip install -r requirements.txt
 ## Usage
 
 Each script takes a Bench2Drive evaluation run directory: the directory
-produced by the leaderboard, containing the per-worker `results_rank*.json`
-files and one sub-folder per route with that route's `metric_info.json`.
+produced by the leaderboard, containing `results.json` (the filename set by
+Bench2Drive's `run_leaderboard.sh`), or `simulation_results.json` (the
+leaderboard evaluator's default filename), and one sub-folder per route with
+that route's `metric_info.json`.
 
 Comfort report (all three variants, per route and aggregated):
 
