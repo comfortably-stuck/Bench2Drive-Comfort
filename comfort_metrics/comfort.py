@@ -5,7 +5,7 @@ it satisfies all six kinematic thresholds from ``smoothing.py``; they differ
 in how the underlying signals are computed and how routes are segmented:
 
 * ``traditional_comfort`` -- Bench2Drive's original metric, unmodified. It is
-  imported directly from the ``Bench2Drive`` submodule rather than
+  imported directly from the selected Bench2Drive checkout rather than
   reimplemented, so this repository never redistributes a modified copy of
   it. Segments are fixed 20-frame (1 s) chunks, each smoothed independently.
 
@@ -27,6 +27,7 @@ import sys
 
 import numpy as np
 
+from .bench2drive import get_bench2drive_root
 from . import smoothing
 from .route_geometry import route_progress
 
@@ -36,18 +37,18 @@ METRIC_KEYS = ("acceleration", "angular_velocity", "forward_vector",
 FRAMES_PER_SEGMENT = 20     # 1 s at CARLA's 20 Hz logging rate
 NUM_DISTANCE_SEGMENTS = 100
 
-_SUBMODULE_TOOLS_DIR = os.path.join(
-    os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "Bench2Drive", "tools")
+_BENCH2DRIVE_TOOLS_DIR = os.path.join(
+    get_bench2drive_root(), "tools")
 
 
 def _original_seg_compute_comfort_metric():
-    """Bench2Drive's own comfort function, loaded from the submodule.
+    """Bench2Drive's own comfort function, loaded from its checkout.
 
-    Loaded lazily and from the submodule's source (rather than vendored
+    Loaded lazily and from the checkout's source (rather than vendored
     here) so this repository never carries its own copy of Bench2Drive code.
     """
-    if _SUBMODULE_TOOLS_DIR not in sys.path:
-        sys.path.insert(0, _SUBMODULE_TOOLS_DIR)
+    if _BENCH2DRIVE_TOOLS_DIR not in sys.path:
+        sys.path.insert(0, _BENCH2DRIVE_TOOLS_DIR)
     from efficiency_smoothness_benchmark import seg_compute_comfort_metric
     return seg_compute_comfort_metric
 

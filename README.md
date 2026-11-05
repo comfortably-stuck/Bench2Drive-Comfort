@@ -44,6 +44,7 @@ scripts/
   evaluate_standstill.py Per-route + aggregate standstill report for one run
   evaluate_all.py        All metrics above, for one or more runs
 Bench2Drive/             Git submodule: unmodified upstream Bench2Drive
+                         (or use an existing checkout via BENCH2DRIVE_ROOT)
 ```
 
 ## Setup
@@ -54,21 +55,47 @@ replace it. Follow
 (CARLA, the leaderboard, and an agent) first, then add this repository for
 the comfort and standstill metrics.
 
-Clone with the submodule:
+### Bench2Drive checkout
+
+If you do not already have Bench2Drive, clone this repository with its
+submodule:
 
 ```bash
 git clone --recurse-submodules <this-repo-url>
 cd Bench2Drive-Comfort
 ```
 
-If already cloned without `--recurse-submodules`:
+If you already have a Bench2Drive checkout, you can use it instead of
+initializing this repository's submodule. Clone this repository normally (do
+not add `--recurse-submodules`) and point `BENCH2DRIVE_ROOT` to the existing
+checkout:
 
 ```bash
-git submodule update --init
+git clone <this-repo-url>
+cd Bench2Drive-Comfort
+export BENCH2DRIVE_ROOT=/absolute/path/to/Bench2Drive
 ```
 
-Install dependencies (a virtual environment is recommended; only `numpy` and
-`scipy` are required):
+The override is used for both the original comfort implementation and the
+default route XML. If `BENCH2DRIVE_ROOT` is unset, the repository uses its
+`Bench2Drive` submodule. You can also set the variable when running the
+scripts if you have multiple Bench2Drive checkouts. This avoids replacing
+the tracked submodule path with a symlink, which can make later Git submodule
+updates confusing.
+
+### Python environment
+
+Run the metrics in your existing Bench2Drive Python environment when
+available. Activate that environment, then install this repository's
+dependencies there (only `numpy` and `scipy` are required):
+
+```bash
+conda activate <your-bench2drive-environment>
+pip install -r requirements.txt
+```
+
+Only create a separate virtual environment if you do not have a usable
+Bench2Drive environment:
 
 ```bash
 python3 -m venv .venv
@@ -104,8 +131,11 @@ python scripts/evaluate_all.py <run_dir> [<run_dir> ...] -o results.csv
 ```
 
 By default, route geometry for the distance-based metric is read from
-`Bench2Drive/leaderboard/data/bench2drive220.xml` (the 220-route Bench2Drive
-benchmark). Pass a different file with `--route-xml` for other route sets.
+`$BENCH2DRIVE_ROOT/leaderboard/data/bench2drive220.xml` when
+`BENCH2DRIVE_ROOT` is set, or from
+`Bench2Drive/leaderboard/data/bench2drive220.xml` otherwise (the 220-route
+Bench2Drive benchmark). Pass a different file with `--route-xml` for other
+route sets.
 
 ## Main results
 
@@ -142,7 +172,8 @@ is distributed under
 (CC BY-NC-ND 4.0)](https://creativecommons.org/licenses/by-nc-nd/4.0/). This
 repository does not vendor, modify, or redistribute any Bench2Drive source
 file; `traditional_comfort()` in `comfort_metrics/comfort.py` calls into the
-submodule's own, unmodified code at runtime rather than reimplementing it.
+selected Bench2Drive checkout's own, unmodified code at runtime rather than
+reimplementing it.
 Use of Bench2Drive itself (via the submodule) remains subject to its own
 license, in particular its non-commercial and no-derivatives terms. Please
 cite both this work and Bench2Drive if you use this repository:

@@ -30,11 +30,11 @@ import numpy as np
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from comfort_metrics import comfort, results
+from comfort_metrics.bench2drive import get_bench2drive_root
 from comfort_metrics.route_geometry import load_route_waypoints
 
 DEFAULT_ROUTE_XML = os.path.join(
-    os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
-    "Bench2Drive", "leaderboard", "data", "bench2drive220.xml")
+    get_bench2drive_root(), "leaderboard", "data", "bench2drive220.xml")
 
 
 def evaluate_run(run_dir, metric_dir, route_xml):
